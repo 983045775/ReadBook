@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">书橙</string>
+
+    <string name="navigation_drawer_open">打开侧拉</string>
+    <string name="navigation_drawer_close">关闭侧拉</string>
+</resources>

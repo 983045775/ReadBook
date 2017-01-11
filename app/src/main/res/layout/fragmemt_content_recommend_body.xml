@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/recommend_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+        />
+        <TextView
+            android:id="@+id/recommend_tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recommend_tv_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:textColor="#dd000000"
+            android:textSize="16sp"
+        />
+        <TextView
+            android:id="@+id/recommend_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recommend_tv_author"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="15dp"
+            android:textColor="#cc000000"
+            android:textSize="18sp"
+        />
+        <com.victor.loading.rotate.RotateLoading
+            android:id="@+id/recommend_newton_cradle_loading"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            app:loading_color="@color/common_color"
+            app:loading_width="5dp"/>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,50 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/common_color</item>
+        <item name="colorPrimaryDark">@color/common_color</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="BookTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/common_color</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/common_color
+        </item>
+    </style>
+
+    <style name="BookTheme.NoActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
+    <declare-styleable name="SmoothViewPager">
+        <attr name="points_visibility" format="boolean"/>
+        <attr name="points_position" format="enum">
+            <enum name="CENTER" value="0"/>
+            <enum name="LEFT" value="1"/>
+            <enum name="RIGHT" value="2"/>
+        </attr>
+        <attr name="points_container_background" format="reference|color"/>
+    </declare-styleable>
+
+    <!--透明主题-->
+    <style name="Translucent" parent="@style/Theme.AppCompat.DayNight.NoActionBar" >
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@color/translucent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+</resources>
