@@ -47,4 +47,8 @@
         <item name="android:windowBackground">@color/translucent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
+
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/common_color</item>
+    </style>
 </resources>

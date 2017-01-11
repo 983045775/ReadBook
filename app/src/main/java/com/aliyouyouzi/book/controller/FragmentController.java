@@ -8,6 +8,7 @@ import com.aliyouyouzi.book.R;
 import com.aliyouyouzi.book.fragment.ChickenFragment;
 import com.aliyouyouzi.book.fragment.HotFragment;
 import com.aliyouyouzi.book.fragment.RecommendFragment;
+import com.aliyouyouzi.book.fragment.WeChatFragment;
 
 /**
  * Created by admin on 2016/12/28.
@@ -21,6 +22,7 @@ public class FragmentController {
     public Fragment mContentHot;
     public Fragment mContentRecommend;
     public Fragment mContentArticle;
+    public Fragment mContentWeChat;
 
     public FragmentController(AppCompatActivity activity) {
         this.mActivity = activity;
@@ -35,6 +37,9 @@ public class FragmentController {
         }
         if (mContentArticle != null) {
             transaction.hide(mContentArticle);
+        }
+        if (mContentWeChat != null) {
+            transaction.hide(mContentWeChat);
         }
     }
 
@@ -67,6 +72,15 @@ public class FragmentController {
                 } else {
                     mContentHot = new HotFragment();
                     transaction.add(R.id.content_home, mContentHot);
+                }
+                break;
+            case R.id.nav_wechat:
+                //微信精选
+                if (mContentWeChat != null) {
+                    transaction.show(mContentWeChat);
+                } else {
+                    mContentWeChat = new WeChatFragment();
+                    transaction.add(R.id.content_home, mContentWeChat);
                 }
                 break;
         }

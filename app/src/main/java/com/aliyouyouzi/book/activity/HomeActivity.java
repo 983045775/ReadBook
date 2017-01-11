@@ -85,6 +85,8 @@ public class HomeActivity extends BaseActivity
             mFragmentController.changeFragments(id);
         } else if (id == R.id.nav_article) {
             mFragmentController.changeFragments(id);
+        } else if (id == R.id.nav_wechat){
+            mFragmentController.changeFragments(id);
         } else if (id == R.id.nav_hot) {
             mFragmentController.changeFragments(id);
         } else if (id == R.id.nav_share) {

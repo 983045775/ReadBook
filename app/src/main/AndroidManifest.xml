@@ -36,8 +36,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ImageActivity"
-                  android:theme="@style/Translucent">
+        <activity
+            android:name=".activity.ImageActivity"
+            android:theme="@style/Translucent">
+        </activity>
+        <activity android:name=".activity.WeChatWebActivity"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        >
         </activity>
     </application>
 

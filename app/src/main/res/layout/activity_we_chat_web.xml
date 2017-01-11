@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_we_chat_web"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aliyouyouzi.book.activity.WeChatWebActivity">
+
+    <WebView
+        android:id="@+id/wechat_activity_wb_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
+    <com.gastudio.gabottleloading.library.GABottleLoadingView
+        android:id="@+id/wechat_activity_loading_view"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:background="@color/translucent"
+        app:bottle_color="@android:color/holo_orange_light"
+        app:water_color="@color/common_color"
+    />
+</RelativeLayout>
