@@ -17,20 +17,28 @@ import com.aliyouyouzi.book.model.WeChatCardInfo;
 import com.aliyouyouzi.book.model.json.WeChatInfo;
 import com.aliyouyouzi.book.model.json.WeChatInfo.ResultBean.ListBean;
 import com.aliyouyouzi.book.protocol.WeChatProtocol;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
+
+import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
+import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 
 /**
  * Created by admin on 2016/12/28.
  */
 
-public class WeChatFragment extends BaseFragment {
+public class WeChatFragment extends BaseFragment implements BGARefreshLayout
+        .BGARefreshLayoutDelegate {
 
     private ViewPager mViewPager;
     private CardPagerAdapter mCardAdapter;
     private ShadowTransformer mCardShadowTransformer;
     private List<ListBean> mDatas;
     public final static String ImageUrl = "imageurl";
+    private BGARefreshLayout mRefreshLayout;
+    private int index = 1;
 
     @Override
     protected View getRootView(LayoutInflater inflater, ViewGroup container) {
@@ -40,12 +48,24 @@ public class WeChatFragment extends BaseFragment {
     @Override
     protected void findview() {
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewPager);
+        initRefreshLayout();
+    }
+
+    private void initRefreshLayout() {
+        mRefreshLayout = (BGARefreshLayout) mRootView.findViewById(R.id.rl_modulename_refresh);
+        // 为BGARefreshLayout 设置代理
+        mRefreshLayout.setDelegate(this);
+        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
+        BGARefreshViewHolder refreshViewHolder = new BGANormalRefreshViewHolder(getActivity(),
+                false);
+        // 设置下拉刷新和上拉加载更多的风格
+        mRefreshLayout.setRefreshViewHolder(refreshViewHolder);
     }
 
     @Override
     protected void initDatas() {
 
-        WeChatProtocol.getInstance().getContentDatas(BaseApi.wechatKey, "1", new WeChatProtocol
+        WeChatProtocol.getInstance().getContentDatas(BaseApi.wechatKey, index++, new WeChatProtocol
                 .JsonCallback() {
 
 
@@ -64,12 +84,16 @@ public class WeChatFragment extends BaseFragment {
     }
 
     private void initViewPager() {
-        mCardAdapter = new CardPagerAdapter();
+        if (mCardAdapter == null) {
+            mCardAdapter = new CardPagerAdapter();
+        }
+        mCardAdapter.removeAll();
         for (ListBean info : mDatas) {
             mCardAdapter.addCardItem(new WeChatCardInfo(info.firstImg, info.title));
         }
-
-        mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
+        if (mCardShadowTransformer == null) {
+            mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
+        }
         mCardShadowTransformer.enableScaling(true);
         mViewPager.setAdapter(mCardAdapter);
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
@@ -111,5 +135,31 @@ public class WeChatFragment extends BaseFragment {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+        WeChatProtocol.getInstance().getContentDatas(BaseApi.wechatKey, index++, new WeChatProtocol
+                .JsonCallback() {
+
+
+            @Override
+            public void onResponse(WeChatInfo result) {
+                mDatas = result.result.list;
+                initViewPager();
+                //进行缓存
+                mRefreshLayout.endRefreshing();
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                Logger.d(e.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+        return false;
     }
 }

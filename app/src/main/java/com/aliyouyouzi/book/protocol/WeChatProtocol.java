@@ -32,7 +32,7 @@ public class WeChatProtocol {
         return instance;
     }
 
-    public void getContentDatas(String key, String index, final JsonCallback callback) {
+    public void getContentDatas(String key, int index, final JsonCallback callback) {
         //获取不同的变化的url
         Random random = new Random();
         int i = random.nextInt(866) + 475;

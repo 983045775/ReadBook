@@ -35,6 +35,9 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         mViews.add(null);
         mData.add(item);
     }
+    public void removeAll() {
+        mData.clear();
+    }
 
     public float getBaseElevation() {
         return mBaseElevation;

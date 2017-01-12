@@ -14,5 +14,5 @@ import retrofit2.http.Query;
 public interface WeChatInterface {
 
     @GET("weixin/query")
-    Call<WeChatInfo> getJSON(@Query("key") String key, @Query("pno") String pno);
+    Call<WeChatInfo> getJSON(@Query("key") String key, @Query("pno") int pno);
 }
